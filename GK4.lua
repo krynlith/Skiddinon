@@ -6,9 +6,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local RequestCommand = ReplicatedStorage:WaitForChild("HDAdminHDClient").Signals.RequestCommandModification
 
-
 local Players = game:GetService("Players")
-
 local UserInputService = game:GetService("UserInputService")
 
 if not character:FindFirstChild('Accessory (KNIF4ELERFTAccessory)') or character:FindFirstChild("Accessory (Knife McGrabbington III)") then
@@ -75,7 +73,6 @@ local function notify(msg)
     end)()
 end
 
-
 RequestCommand:InvokeServer(";hat me 18268136683")
 
 yeah=player.Backpack:FindFirstChild('Building Tools') or player.Backpack:FindFirstChild('F3X Btools!')
@@ -104,6 +101,7 @@ local remote = tool.SyncAPI.ServerEndpoint
 function _(args)
     remote:InvokeServer(unpack(args))
 end
+
 function SetCollision(part, boolean)
     local args = {
         [1] = "SyncCollision",
@@ -116,18 +114,20 @@ function SetCollision(part, boolean)
     }
     _(args)
 end
-    function SetLocked(part,boolean)
-        local args = {
-            [1] = "SetLocked",
-            [2] = {
-                [1] = part
-            },
-            [3] = boolean
-        }
-        _(args)
-    end
+
+function SetLocked(part,boolean)
+    local args = {
+        [1] = "SetLocked",
+        [2] = {
+            [1] = part
+        },
+        [3] = boolean
+    }
+    _(args)
+end
+
 function yerpp(E)
-local argsCreate = {
+    local argsCreate = {
         [1] = "CreateDecorations",
         [2] = {
             [1] = {
@@ -137,7 +137,6 @@ local argsCreate = {
         }
     }
 
-   
     local argsSync = {
         [1] = "SyncDecorate",
         [2] = {
@@ -155,41 +154,40 @@ end
 local knfe = character["Accessory (Knife McGrabbington III)"]
 
 if knfe then
-	local args = {
-		"Remove",
-		{
-			knfe.Handle.SpecialMesh
-		}
-	}
-
-	_(args)
+    local args = {
+        "Remove",
+        {
+            knfe.Handle.SpecialMesh
+        }
+    }
+    _(args)
 end
 
 local function Resize(part, size, ha)
-	local args = {
-		"SyncResize",
-		{
-			{
-				Part = part,
-				CFrame = ha,
-				Size = size
-			}
-		}
-	}
-	_(args)
+    local args = {
+        "SyncResize",
+        {
+            {
+                Part = part,
+                CFrame = ha,
+                Size = size
+            }
+        }
+    }
+    _(args)
 end
 
 local function SetAnchor(boolean, part)
-	local args = {
-		"SyncAnchor",
-		{
-			{
-				Part = part,
-				Anchored = boolean
-			}
-		}
-	}
-	_(args)
+    local args = {
+        "SyncAnchor",
+        {
+            {
+                Part = part,
+                Anchored = boolean
+            }
+        }
+    }
+    _(args)
 end
 
 function MovePart(part, cf)
@@ -206,18 +204,19 @@ function MovePart(part, cf)
 end
 
 local function Color(part, color)
-	local args = {
-		"SyncColor",
-		{
-			{
-				Part = part,
-				Color = color,
-				UnionColoring = false
-			}
-		}
-	}
-	_(args)
+    local args = {
+        "SyncColor",
+        {
+            {
+                Part = part,
+                Color = color,
+                UnionColoring = false
+            }
+        }
+    }
+    _(args)
 end
+
 function AddMesh(part)
     local args = {
         [1] = "CreateMeshes",
@@ -230,29 +229,30 @@ function AddMesh(part)
     _(args)
 end
 
-    function DestroyPart(part)
-        local args = {
-            [1] = "Remove",
-            [2] = {
-                [1] = part
+function DestroyPart(part)
+    local args = {
+        [1] = "Remove",
+        [2] = {
+            [1] = part
+        }
+    }
+    _(args)
+end
+
+function SetMesh(part,meshid,offseter)
+    local args = {
+        [1] = "SyncMesh",
+        [2] = {
+            [1] = {
+                ["Offset"] = offseter,
+                ["Part"] = part,
+                ["MeshId"] = "rbxassetid://"..meshid
             }
         }
-        _(args)
-    end
+    }
+    _(args)
+end
 
-	function SetMesh(part,meshid,offseter)
-			local args = {
-				[1] = "SyncMesh",
-				[2] = {
-					[1] = {
-            ["Offset"] = offseter,
-						["Part"] = part,
-						["MeshId"] = "rbxassetid://"..meshid
-					}
-				}
-			}
-			_(args)
-		end
 function SetTexture(part, texid)
     local args = {
         [1] = "SyncMesh",
@@ -266,30 +266,30 @@ function SetTexture(part, texid)
     _(args)
 end
 
-    function SetTrans(part,int)
-        local args = {
-            [1] = "SyncMaterial",
-            [2] = {
-                [1] = {
-                    ["Part"] = part,
-                    ["Transparency"] = int
-                }
+function SetTrans(part,int)
+    local args = {
+        [1] = "SyncMaterial",
+        [2] = {
+            [1] = {
+                ["Part"] = part,
+                ["Transparency"] = int
             }
         }
-        _(args)
-    end
+    }
+    _(args)
+end
 
 spawn(function()
-yerpp(knfe.Handle)
+    yerpp(knfe.Handle)
 end)
 spawn(function()
-AddMesh(knfe.Handle)
+    AddMesh(knfe.Handle)
 end)
 spawn(function()
-SetMesh(knfe.Handle, "18114736783",Vector3.new(0, 0, 0))
+    SetMesh(knfe.Handle, "18114736783",Vector3.new(0, 0, 0))
 end)
 spawn(function()
-SetTexture(knfe.Handle, "80617091791234")
+    SetTexture(knfe.Handle, "80617091791234")
 end)
 
 function bleed(target)
@@ -311,29 +311,27 @@ function bleed(target)
         end
     end)
     
-
     coroutine.wrap(function()
         while not stopBleeding and target and target.Character do
             local humanoid = target.Character:FindFirstChildOfClass("Humanoid")
             local rootPart = target.Character:FindFirstChild("HumanoidRootPart")
             
             if rootPart then
-
                 coroutine.wrap(function()
-                yez=CFrame.new(0,-10,0)
+                    yez=CFrame.new(0,-10,0)
                     local blood = remote:InvokeServer("CreatePart", "Ball", yez, target.Character)
                     if blood then
                         table.insert(activeBloodParts, blood)
                         
                         spawn(function()
-                        Color(blood, Color3.fromRGB(255, 0, 0))
+                            Color(blood, Color3.fromRGB(255, 0, 0))
                         end)
                     
                         spawn(function()
-    Resize(blood, Vector3.new(0.2, 0.2, 0.2), rootPart.CFrame + Vector3.new(math.random(-1,1),0,math.random(-1,1)))
-end)
+                            Resize(blood, Vector3.new(0.2, 0.2, 0.2), rootPart.CFrame + Vector3.new(math.random(-1,1),0,math.random(-1,1)))
+                        end)
                         spawn(function()
-                        SetAnchor(false, blood)
+                            SetAnchor(false, blood)
                         end)
                         coroutine.wrap(function()
                             wait(2)
@@ -346,7 +344,6 @@ end)
                             SetTrans(blood, 0.1)
                             DestroyPart(blood)
                             
-                        
                             for i, v in pairs(activeBloodParts) do
                                 if v == blood then
                                     table.remove(activeBloodParts, i)
@@ -364,7 +361,7 @@ end)
 end
 
 function c0lefect(E)
-local argsCreate = {
+    local argsCreate = {
         [1] = "CreateDecorations",
         [2] = {
             [1] = {
@@ -374,7 +371,6 @@ local argsCreate = {
         }
     }
 
-   
     local argsSync = {
         [1] = "SyncDecorate",
         [2] = {
@@ -386,34 +382,31 @@ local argsCreate = {
         } 
     }
 
-local args = {
-	"Remove",
-	{
-		E:FindFirstChild('Sparkles')
-	}
-}
-
-
+    local args = {
+        "Remove",
+        {
+            E:FindFirstChild('Sparkles')
+        }
+    }
 
     _(argsCreate)
     _(argsSync)
-task.wait(1)
+    task.wait(1)
     _(args)
 end
 
+function Weld(part1, part2,lead)
+    local args = {
+        [1] = "CreateWelds",
+        [2] = {
+            [1] = part1,
+            [2] = part2
+        },
+        [3] = lead
+    }
+    _(args)
+end
 
-			function Weld(part1, part2,lead)
-				local args = {
-					[1] = "CreateWelds",
-					[2] = {
-						[1] = part1,
-						[2] = part2
-					},
-					[3] = lead
-				}
-				_(args)
-	
-			end
 function breakWelds(part)
     local welds = {}
     for _, weld in ipairs(part:GetDescendants()) do
@@ -460,77 +453,67 @@ holdstaffAnim.AnimationId = "rbxassetid://57794492"
 local stabAnim = Instance.new("Animation")
 stabAnim.AnimationId = "rbxassetid://30174375"
 
-
-				local track1 = humanoid:LoadAnimation(staffupAnim)
-				local track2 = humanoid:LoadAnimation(swordhitAnim)
-				holdTrack = humanoid:LoadAnimation(holdstaffAnim)
-
-
-
+local track1 = humanoid:LoadAnimation(staffupAnim)
+local track2 = humanoid:LoadAnimation(swordhitAnim)
+holdTrack = humanoid:LoadAnimation(holdstaffAnim)
 
 function GrabAnim()
-				track1.Looped = false
-				track2.Looped = false
-				holdTrack.Looped = false
+    track1.Looped = false
+    track2.Looped = false
+    holdTrack.Looped = false
 
-				track1:Play()
-				track1.Stopped:Wait()
+    track1:Play()
+    track1.Stopped:Wait()
 
-				track2:Play()
-				track2.Stopped:Wait()
+    track2:Play()
+    track2.Stopped:Wait()
 
-				holdTrack:Play()
-				holdTrack:AdjustSpeed(0)
+    holdTrack:Play()
+    holdTrack:AdjustSpeed(0)
 end
 
 function Kill()
-local stabTrack = humanoid:LoadAnimation(stabAnim)
-	stabTrack.Looped = false
-	stabTrack:Play()
-	stabTrack.Stopped:Wait()
+    local stabTrack = humanoid:LoadAnimation(stabAnim)
+    stabTrack.Looped = false
+    stabTrack:Play()
+    stabTrack.Stopped:Wait()
 
-	if holdTrack then holdTrack:Stop() end
+    if holdTrack then holdTrack:Stop() end
 end
-
 
 function failed()
-				track1.Looped = false
-				track2.Looped = false
-				holdTrack.Looped = false
+    track1.Looped = false
+    track2.Looped = false
+    holdTrack.Looped = false
 
-				track1:Play()
-        track1:AdjustSpeed(3)
-				track1.Stopped:Wait()
+    track1:Play()
+    track1:AdjustSpeed(3)
+    track1.Stopped:Wait()
 
-				
-         holdTrack:Play()
-         wait(0.3)
-         holdTrack:Stop()
+    holdTrack:Play()
+    wait(0.3)
+    holdTrack:Stop()
 end
-
 
 local isBusy = false
 local alignPosition
 local alignOrientation
-
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer 
+local isHolding = false -- FIX: Track holding state
 
 local function attachBehind(targetChar)
     local root = character:FindFirstChild("HumanoidRootPart")
     local targetRoot = targetChar:FindFirstChild("HumanoidRootPart")
     if root and targetRoot then
-        
         local attachment0 = root:FindFirstChild("Attachment") or Instance.new("Attachment", root)
         local attachment1 = targetRoot:FindFirstChild("Attachment") or Instance.new("Attachment", targetRoot)
 
-   
         alignPosition = Instance.new("AlignPosition")
         alignPosition.MaxForce = 1000000
         alignPosition.Responsiveness = 200
         alignPosition.Attachment0 = attachment0
         alignPosition.Attachment1 = attachment1
         alignPosition.Parent = root
+        
         alignOrientation = Instance.new("AlignOrientation")
         alignOrientation.MaxTorque = 1000000
         alignOrientation.Responsiveness = 200
@@ -538,8 +521,8 @@ local function attachBehind(targetChar)
         alignOrientation.Attachment1 = attachment1
         alignOrientation.Parent = root
 
-     
         attachment1.Position = Vector3.new(0, 0, 0.5)
+        isHolding = true -- FIX: Mark as holding
     end
 end
 
@@ -552,175 +535,198 @@ local function detach()
         alignOrientation:Destroy()
         alignOrientation = nil
     end
+    isHolding = false -- FIX: Mark as not holding
 end
 
+-- FIX: Improved grab detection with raycast and distance check
 local function attacke()
     if isBusy then return end
     isBusy = true
 
     local hitPlayer = nil
-local touchedConnection
-
-local function onTouch(other)
-    local otherPlayer = Players:GetPlayerFromCharacter(other.Parent)
-    if otherPlayer and otherPlayer ~= player then
-        hitPlayer = otherPlayer
+    local root = character:FindFirstChild("HumanoidRootPart")
+    
+    if not root then
+        isBusy = false
+        return
     end
-end
 
-touchedConnection = arm.Touched:Connect(onTouch)
-task.wait(0.15)
-if touchedConnection then
-    touchedConnection:Disconnect()
-end
+    -- Raycast detection with distance validation
+    local raycastParams = RaycastParams.new()
+    raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+    raycastParams.FilterDescendantsInstances = {character}
+
+    local rayOrigin = root.Position
+    local rayDirection = root.CFrame.LookVector * 5 -- 5 stud range
+    
+    local rayResult = workspace:Raycast(rayOrigin, rayDirection, raycastParams)
+    
+    -- Check if we hit something and it's a player within range
+    if rayResult then
+        local hitCharacter = rayResult.Instance.Parent
+        if hitCharacter:FindFirstChildOfClass("Humanoid") then
+            local hitPlayerObj = Players:GetPlayerFromCharacter(hitCharacter)
+            local targetRoot = hitCharacter:FindFirstChild("HumanoidRootPart")
+            
+            -- Verify distance is close enough (max 5 studs)
+            if targetRoot then
+                local distance = (root.Position - targetRoot.Position).Magnitude
+                if hitPlayerObj and hitPlayerObj ~= player and distance <= 5 then
+                    hitPlayer = hitPlayerObj
+                end
+            end
+        end
+    end
 
     if hitPlayer and hitPlayer.Character then
+        local targetChar = hitPlayer.Character
+        local targetRoot = targetChar:FindFirstChild("HumanoidRootPart")
         
-RequestCommand:InvokeServer(";speed " ..hitPlayer.Name.. " 0")
- 
-        
-				track1.Looped = false
-				track2.Looped = false
-				holdTrack.Looped = false
-
-				track1:Play()
-				track1.Stopped:Wait()
-
-				track2:Play()
-        track2:AdjustSpeed(3)
-				track2.Stopped:Wait()
-
-				holdTrack:Play()
-        
-				holdTrack:AdjustSpeed(0)
-spawn(function()
-attachBehind(hitPlayer.Character)
-wait(0.8)
-detach()
-end)
-spawn(function()
-SetLocked(hitPlayer.Character.Torso, false)
-end)
-spawn(function()
-SetLocked(char.Torso, false)
-end)
- Weld(character.Torso,hitPlayer.Character.Torso,character.Torso)
-Weld(character.Torso,hitPlayer.Character.HumanoidRootPart,character.Torso)
-Weld(character.Torso,hitPlayer.Character.Head,character.Torso)
-
-
-wait(3)
-            spawn(function()
-            Kill()
-            end)
-            bleed(hitPlayer)
-            wait(0.5)
-           RequestCommand:InvokeServer(";damage " ..hitPlayer.Name.. " 999")
-           wait(0.5)
-breakWelds(character.Torso)
-breakWelds(hitPlayer.Character.Torso)
-spawn(function()
-wait(0.8)
-
-spawn(function()
-SetLocked(hitPlayer.Character.Torso, false)
-end)
-spawn(function()
-SetLocked(hitPlayer.Character["Right Arm"], false)
-end)
-spawn(function()
-SetLocked(hitPlayer.Character["Left Arm"], false)
-end)
-spawn(function()
-SetLocked(hitPlayer.Character["Right Leg"], false)
-end)
-spawn(function()
-SetLocked(hitPlayer.Character["Left Leg"], false)
-end)
-
-spawn(function()
-SetCollision(hitPlayer.Character.Torso, true)
-end)
-spawn(function()
-SetCollision(hitPlayer.Character["Right Arm"], true)
-end)
-spawn(function()
-SetCollision(hitPlayer.Character["Left Arm"], true)
-end)
-spawn(function()
-SetCollision(hitPlayer.Character["Right Leg"], true)
-end)
-spawn(function()
-SetCollision(hitPlayer.Character["Left Leg"], true)
-end)
-end)
-
-wait(0.3)
-           
-            
+        if not targetRoot then
             isBusy = false
-  
+            return
+        end
+
+        RequestCommand:InvokeServer(";speed " .. hitPlayer.Name .. " 0")
+ 
+        track1.Looped = false
+        track2.Looped = false
+        holdTrack.Looped = false
+
+        track1:Play()
+        track1.Stopped:Wait()
+
+        track2:Play()
+        track2:AdjustSpeed(3)
+        track2.Stopped:Wait()
+
+        holdTrack:Play()
+        holdTrack:AdjustSpeed(0)
+        
+        -- FIX: Attach immediately and keep holding during weld
+        attachBehind(targetChar)
+        
+        spawn(function()
+            SetLocked(targetChar.Torso, false)
+        end)
+        spawn(function()
+            SetLocked(character.Torso, false)
+        end)
+        
+        Weld(character.Torso, targetChar.Torso, character.Torso)
+        Weld(character.Torso, targetChar.HumanoidRootPart, character.Torso)
+        Weld(character.Torso, targetChar.Head, character.Torso)
+
+        -- FIX: Keep holding for longer (5 seconds instead of 0.8)
+        wait(5)
+        
+        -- FIX: Only detach AFTER welding is complete
+        detach()
+        
+        spawn(function()
+            Kill()
+        end)
+        
+        bleed(hitPlayer)
+        wait(0.5)
+        RequestCommand:InvokeServer(";damage " .. hitPlayer.Name .. " 999")
+        wait(0.5)
+        
+        breakWelds(character.Torso)
+        breakWelds(targetChar.Torso)
+        
+        spawn(function()
+            wait(0.8)
+
+            spawn(function()
+                SetLocked(targetChar.Torso, false)
+            end)
+            spawn(function()
+                SetLocked(targetChar["Right Arm"], false)
+            end)
+            spawn(function()
+                SetLocked(targetChar["Left Arm"], false)
+            end)
+            spawn(function()
+                SetLocked(targetChar["Right Leg"], false)
+            end)
+            spawn(function()
+                SetLocked(targetChar["Left Leg"], false)
+            end)
+
+            spawn(function()
+                SetCollision(targetChar.Torso, true)
+            end)
+            spawn(function()
+                SetCollision(targetChar["Right Arm"], true)
+            end)
+            spawn(function()
+                SetCollision(targetChar["Left Arm"], true)
+            end)
+            spawn(function()
+                SetCollision(targetChar["Right Leg"], true)
+            end)
+            spawn(function()
+                SetCollision(targetChar["Left Leg"], true)
+            end)
+        end)
+
+        wait(0.3)
+        isBusy = false
 
     else
-        
         failed()
         wait(0.4)
-            isBusy = false
+        isBusy = false
     end
 end
 
-
-
-
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
- if gameProcessed then return end
+    if gameProcessed then return end
 
- if input.KeyCode == Enum.KeyCode.Z then
-  local args = {
-  "Remove",
-  {
-   knfe.Handle
-  }
- }
- _(args)
- knfe:Destroy()
+    if input.KeyCode == Enum.KeyCode.Z then
+        local args = {
+            "Remove",
+            {
+                knfe.Handle
+            }
+        }
+        _(args)
+        knfe:Destroy()
 
- RequestCommand:InvokeServer(";hat me 18420472059")
- wait(1)
- local knife = character:FindFirstChild("Accessory (KNIF4ELERFTAccessory)")
+        RequestCommand:InvokeServer(";hat me 18420472059")
+        wait(1)
+        local knife = character:FindFirstChild("Accessory (KNIF4ELERFTAccessory)")
 
- spawn(function()
- local args = {
-  "Remove",
-  {
-   knife.Handle.SpecialMesh
-  }
- }
- _(args)
- end)
+        spawn(function()
+            local args = {
+                "Remove",
+                {
+                    knife.Handle.SpecialMesh
+                }
+            }
+            _(args)
+        end)
 
- spawn(function()
- AddMesh(knife.Handle)
- end)
- spawn(function()
- SetMesh(knife.Handle, "18114736783", Vector3.new(0, 0,-0.25))
- end)
- spawn(function()
- SetTexture(knife.Handle, "80617091791234")
- end)
+        spawn(function()
+            AddMesh(knife.Handle)
+        end)
+        spawn(function()
+            SetMesh(knife.Handle, "18114736783", Vector3.new(0, 0,-0.25))
+        end)
+        spawn(function()
+            SetTexture(knife.Handle, "80617091791234")
+        end)
 
- ready = true
- end 
+        ready = true
+    end 
 end)
-
-
-
 
 UserInputService.TouchTap:Connect(function(input, gameProcessed)
     if gameProcessed then return end
-if ready == true then
-    attacke()
-end
+    if ready == true then
+        attacke()
+    end
 end)
 
 end
